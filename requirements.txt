@@ -1,0 +1,17 @@
+# Website Traffic Database - Data Generation Scripts
+# This project uses only Python built-in modules for data generation
+
+# Core Python modules used:
+# - random (for generating random data)
+# - datetime (for date/time operations)
+
+# No external dependencies required
+# All scripts use only Python standard library modules
+
+Notes
+SQL folder is good,
+SRC folder only has data population scripts. After running the scripts, the SQL files were manually combined 
+for the insertion sql file.
+Need to understand the dashboard and visualization, need a better understanding of python, 
+and also how we went from web traffic site to completed project. What did we do manually? 
+What motivated those choices?
