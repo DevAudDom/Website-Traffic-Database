@@ -56,13 +56,12 @@ organic_keywords = [
     "four seasons", "hotels", "bora bora", "four seasons orlando hotel", "spa", "four seasons chicago", "four seasons boston", 
     "four seasons maui", "georges v", 
     "four seasons at park lane london", "four seasons hampshire", "four seasons london", 
-    "four seasons hampshire", "four season london", "four seasons hotel london", 
-    "four seasons hotel london", "four season hotel", "four seasons toronto", 
-    "four seasons toronto", "four seasons hotel toronto", "four seasons hotel toronto", 
-    "hotel montreal", "four seasons montreal", "four seasons whistler", "four seasons whistler", 
-    "four seasons montreal", "four season", "four seasons florence", "four seasons hotel firenze", 
-    "four season firenze", "four seasons hotel firenze", "four seasons florence", "four season firenze", 
-    "hotel four season milano", "hotel four season milano", "georges v", 
+    "four seasons hotel london", "four season hotel",
+    "four seasons toronto", "four seasons hotel toronto", 
+    "hotel montreal", "four seasons montreal", "four seasons whistler", 
+    "four season", "four seasons florence", "four seasons hotel firenze", 
+    "four season firenze",
+    "hotel four season milano",
     "four seasons hotel paris george v", "four seasons george v", "paris four seasons george v", 
     "four season paris george v", "four seasons georges v", 
     "hotel george v paris", "hotel four seasons paris", "four seasons paris"
@@ -146,7 +145,10 @@ def generate_sql():
         session_duration = generate_session_duration()
         device = generate_device()
         backlink_id = random.randint(1, len(backlink_pairs))
-        keyword_id = random.randint(1, len(paid_keywords) + len(organic_keywords))
+        # Use actual unique keyword count to avoid foreign key violations
+        unique_organic_count = len(set(organic_keywords))
+        total_unique_keywords = len(paid_keywords) + unique_organic_count
+        keyword_id = random.randint(1, total_unique_keywords)
         visit_date = generate_random_date()
         sql_statements.append(
             f"INSERT INTO fourseasons_access (visitor_id, pages_visited, session_duration, device, backlink_id, keyword_id, access_date)"
