@@ -24,74 +24,69 @@ def generate_random_date():
     random_date = start_date + datetime.timedelta(days=random_days)
     return random_date
 
-# Helper function to pick a random visitor from the generated visitor IDs
-def generate_visitor_id(visitor_ids):
-    return random.choice(visitor_ids)
+# Helper function to generate random visitor data
+def generate_visitor_data(visitor_data):
+    return random.choice(visitor_data)
 
 # Helper function to pick a random device (Mobile or Desktop)
 def generate_device():
     return 'Mobile' if random.random() < 0.6943 else 'Desktop'
 
-# Helper function to generate a random backlink ID (1 to 20 backlinks)
-def generate_backlink_id():
-    return random.randint(1, 20)
 
-# Helper function to generate a random keyword ID (1 to 49 keywords)
-def generate_keyword_id():
-    return random.randint(1, 49)
+# Keyword data extracted from Top 5 countries utilizing onlineseranking
+organic_keywords = [
+    'hong kong shangri la',
+    'hk island hotel',
+    'shangri la',
+    'shangri la hong kong',
+    'shangri la hotels and resorts',
+    'the shard hotel',
+    'shangri la london',
+    'shangri la the shard',
+    'shard hotel',
+    'london hotel the shard',
+    'shangrila sydney hotel'
+]
 
-# Generating 49 keywords (organic and paid)
-
-keywords = [
-    ('Organic', 'hong kong shangri la'),
-    ('Organic', 'hk island hotel'),
-    ('Organic', 'shangri la'),
-    ('Organic', 'shangri la hong kong'),
-    ('Organic', 'shangri la hotels and resorts'),
-    ('Organic', 'the shard hotel'),
-    ('Organic', 'shangri la london'),
-    ('Organic', 'shangri la the shard'),
-    ('Organic', 'shard hotel'),
-    ('Organic', 'london hotel the shard'),
-    ('Organic', 'shangrila sydney hotel'),
-    ('Paid', 'shangri la hotel toronto'),
-    ('Paid', 'shangrila hotel toronto'),
-    ('Paid', 'shangri la hotel'),
-    ('Paid', 'toronto luxury hotel'),
-    ('Paid', 'shangri la vancouver spa'),
-    ('Paid', 'shangri la singapore'),
-    ('Paid', 'toronto luxury hotel downtown'),
-    ('Paid', 'shangri la hotel taipei taiwan'),
-    ('Paid', 'shangri la cebu'),
-    ('Paid', 'shangri la at the fort manila'),
-    ('Paid', 'shangri la hotels'),
-    ('Paid', 'shangrila sg'),
-    ('Paid', 'shangri la sydney hotel'),
-    ('Paid', 'island shangri la hong kong'),
-    ('Paid', 'shangri la fiji'),
-    ('Paid', 'rasa sayang penang'),
-    ('Paid', 'shangri-la orchard singapore'),
-    ('Paid', 'singapore shangri la'),
-    ('Paid', 'shangri-la rasa sayang'),
-    ('Paid', 'edsa shangri-la manila'),
-    ('Paid', 'jen hotel penang'),
-    ('Paid', 'shangri la sydney'),
-    ('Paid', 'shangri la kl'),
-    ('Paid', 'bangkok hotels 5 star'),
-    ('Paid', 'family staycation singapore'),
-    ('Paid', 'harbin hotel china'),
-    ('Paid', 'shangrila surabaya'),
-    ('Paid', 'shangrila the fort'),
-    ('Paid', 'shangri la hotel hangzhou'),
-    ('Paid', 'best hotel in hangzhou china'),
-    ('Paid', 'shangri la boracay'),
-    ('Paid', 'shangri-la boracay'),
-    ('Paid', 'kowloon shangri-la hong kong'),
-    ('Paid', 'shangri la kuala lumpur'),
-    ('Paid', 'hotel on boracay'),
-    ('Paid', 'shangri la boracay resort & spa boracay philippines'),
-    ('Paid', 'shangri sydney'),
-    ('Paid', 'hotel shangri la kuala lumpur')
+paid_keywords = [
+    'shangri la hotel toronto',
+    'shangrila hotel toronto',
+    'shangri la hotel',
+    'toronto luxury hotel',
+    'shangri la vancouver spa',
+    'shangri la singapore',
+    'toronto luxury hotel downtown',
+    'shangri la hotel taipei taiwan',
+    'shangri la cebu',
+    'shangri la at the fort manila',
+    'shangri la hotels',
+    'shangrila sg',
+    'shangri la sydney hotel',
+    'island shangri la hong kong',
+    'shangri la fiji',
+    'rasa sayang penang',
+    'shangri-la orchard singapore',
+    'singapore shangri la',
+    'shangri-la rasa sayang',
+    'edsa shangri-la manila',
+    'jen hotel penang',
+    'shangri la sydney',
+    'shangri la kl',
+    'bangkok hotels 5 star',
+    'family staycation singapore',
+    'harbin hotel china',
+    'shangrila surabaya',
+    'shangrila the fort',
+    'shangri la hotel hangzhou',
+    'best hotel in hangzhou china',
+    'shangri la boracay',
+    'shangri-la boracay',
+    'kowloon shangri-la hong kong',
+    'shangri la kuala lumpur',
+    'hotel on boracay',
+    'shangri la boracay resort & spa boracay philippines',
+    'shangri sydney',
+    'hotel shangri la kuala lumpur'
 ]
 
 backlinks = [
@@ -118,7 +113,7 @@ backlinks = [
 ]
 
 # Generating 1,000 visitors (with gender, age, country distribution)
-visitor_ids = []
+visitor_data = []
 genders = ['Male', 'Female']
 countries = ['Philippines', 'Australia', 'Hong Kong', 'United States', 'Malaysia', 'Other']
 age_groups = [
@@ -131,27 +126,26 @@ for i in range(1000):
     country = random.choices(countries, [12.85, 8.93, 8.73, 8.69, 7.86, 52.94])[0]
     age_range = random.choices(age_groups, [11.00, 25.54, 20.11, 18.75, 15.22, 9.38])[0]
     age = random.randint(age_range[0], age_range[1])
-    visitor_ids.append(i + 1)
+    visitor_data.append((i + 1, gender, country, age))
 
 # Generating SQL Insert Statements for 1,000 Visitors
 visitor_inserts = []
-for i in range(1000):
-    gender = random.choices(genders, [45.44, 54.56])[0]
-    country = random.choices(countries, [12.85, 8.93, 8.73, 8.69, 7.86, 52.94])[0]
-    age_range = random.choices(age_groups, [11.00, 25.54, 20.11, 18.75, 15.22, 9.38])[0]
-    age = random.randint(age_range[0], age_range[1])
+for vid, gender, country, age in visitor_data:
     visitor_inserts.append(
-        f"INSERT INTO shangri_visitor (gender, country, age) VALUES ('{gender}', '{country}', {age});")
+        f"INSERT INTO shangri_visitor (visitor_id, gender, country, age) VALUES ({vid}, '{gender}', '{country}', {age});")
 
 # Generating SQL Insert Statements for 2,000 Access Records with Random Dates
 access_inserts = []
 for i in range(2000):
-    visitor_id = generate_visitor_id(visitor_ids)
+    visitor_id = generate_visitor_data(visitor_data)[0]
     pages_visited = generate_pages_visited()
     session_duration = generate_session_duration()
     device = generate_device()
-    backlink_id = generate_backlink_id()
-    keyword_id = generate_keyword_id()
+    # Use actual unique keyword count to avoid foreign key violations
+    unique_organic_count = len(set(organic_keywords))
+    total_unique_keywords = len(paid_keywords) + unique_organic_count
+    keyword_id = random.randint(1, total_unique_keywords)
+    backlink_id = random.randint(1, len(backlinks))
     visit_date = generate_random_date()
     access_inserts.append(
         f"INSERT INTO shangri_access (visitor_id, pages_visited, session_duration, device, backlink_id, keyword_id, access_date) "
@@ -159,18 +153,23 @@ for i in range(2000):
 
 # SQL Insertion for Keywords
 keyword_inserts = []
-for keyword in keywords:
+for keyword in paid_keywords:
+    safe_keyword = keyword.replace("'", "''")
     keyword_inserts.append(
-        f"INSERT INTO shangri_keyword (traffic_type, keyword) VALUES ('{keyword[0]}', '{keyword[1]}');")
-    
-    # SQL Insertion for Keywords
+        f"INSERT INTO shangri_keyword (traffic_type, keyword) VALUES ('Paid', '{safe_keyword}');")
+for keyword in organic_keywords:
+    safe_keyword = keyword.replace("'", "''")
+    keyword_inserts.append(
+        f"INSERT INTO shangri_keyword (traffic_type, keyword) VALUES ('Organic', '{safe_keyword}');")
+
+# SQL Insertion for Backlinks
 backlink_inserts = []
-for backlink in backlinks:
+for backlink, source in backlinks:
     backlink_inserts.append(
-        f"INSERT INTO shangri_backlink (backlink_url, source_url) VALUES ('{backlink[0]}', '{backlink[1]}');")
+        f"INSERT INTO shangri_backlink (backlink_url, source_url) VALUES ('{backlink}', '{source}');")
     
 # Writing to a SQL file
-with open('shangri_data_insertion.sql', 'w') as f:
-    f.write('\n'.join(backlink_inserts + keyword_inserts + visitor_inserts + access_inserts))
+with open('shangri_data.sql', 'w', encoding='utf-8') as f:
+    f.write('\n'.join(keyword_inserts + backlink_inserts + visitor_inserts + access_inserts))
 
-print("SQL data insertion script for Shangri generated successfully!")
+print("SQL script 'shangri_data.sql' generated successfully.")
