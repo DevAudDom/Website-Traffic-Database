@@ -28,6 +28,7 @@ def generate_random_date():
 def generate_device():
     return 'Mobile' if random.random() < .6944 else 'Desktop'
 
+
 # Helper function to generate a random visitor ID
 def generate_visitor_id(visitor_ids):
     return random.choice(visitor_ids)
@@ -112,10 +113,7 @@ top_countries = {
     "Other": 14.04
 }
 
-device_distribution = {
-    "Desktop": 30.56,
-    "Mobile": 69.44
-}
+
 
 # Generate visitors
 visitor_ids = []
@@ -132,9 +130,11 @@ def generate_sql():
     sql_statements = []
     
     for keyword in paid_keywords:
-        sql_statements.append(f"INSERT INTO fourseasons_keyword (traffic_type, keyword) VALUES ('Paid', '{keyword}');")
+        safe_keyword = keyword.replace("'", "''")
+        sql_statements.append(f"INSERT INTO fourseasons_keyword (traffic_type, keyword) VALUES ('Paid', '{safe_keyword}');")
     for keyword in organic_keywords:
-        sql_statements.append(f"INSERT INTO fourseasons_keyword (traffic_type, keyword) VALUES ('Organic', '{keyword}');")
+        safe_keyword = keyword.replace("'", "''")
+        sql_statements.append(f"INSERT INTO fourseasons_keyword (traffic_type, keyword) VALUES ('Organic', '{safe_keyword}');")
     for backlink, source in backlink_pairs:
         sql_statements.append(f"INSERT INTO fourseasons_backlink (backlink_url, source_url) VALUES ('{backlink}', '{source}');")
     for vid, gender, country, age in visitor_ids:

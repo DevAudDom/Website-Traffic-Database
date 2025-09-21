@@ -24,7 +24,7 @@ def generate_random_date():
     random_date = start_date + datetime.timedelta(days=random_days)
     return random_date
 
-# Helper function to pick a random device (Mobile or Desktop)
+# Helper function to pick a random device (Mobile or Desktop) Mobile: 56.38% Desktop: 43.62%
 def generate_device():
     return 'Mobile' if random.random() < 0.5638 else 'Desktop'
 
@@ -32,7 +32,7 @@ def generate_device():
 def generate_visitor_id(visitor_ids):
     return random.choice(visitor_ids)
 
-# Data extracted from information2.txt
+# Keyword data extracted from Top 5 countries utilizing onlineseranking
 paid_keywords = [
     "marriott", "bonvoy marriott", "marriott frenchman's cove st thomas", "marriott bonvoy points",
     "gaylord national convention center maryland", "grand lake marriott orlando", "marriott own",
@@ -56,6 +56,7 @@ organic_keywords = [
     "united airline", "gaylord texan"
 ]
 
+# utilized ahrefs.com
 backlink_pairs = [
     ("https://www.newsweek.com/rankings/americas-greatest-workplaces-2023-diversity", "https://www.marriott.com/"),
     ("https://hottravel.mx/", "https://www.marriott.com/"),
@@ -80,8 +81,25 @@ backlink_pairs = [
 ]
 
 visitor_distribution = {"Male": 45.36, "Female": 54.64}
-age_distribution = {"18-24": 8.83, "25-34": 24.17, "35-44": 20.58, "45-54": 21.17, "55-64": 16.36, "65+": 8.90}
-top_countries = {"United States": 67.50, "Canada": 5.23, "Japan": 3.42, "India": 2.91, "United Kingdom": 2.28, "Other": 14.04}
+
+age_distribution = {
+    "18-24": 8.83,
+    "25-34": 24.17,
+    "35-44": 20.58,
+    "45-54": 21.17,
+    "55-64": 16.36,
+    "65+": 8.90
+}
+
+top_countries = {
+    "United States": 67.50,
+    "Canada": 5.23,
+    "Japan": 3.42,
+    "India": 2.91,
+    "United Kingdom": 2.28,
+    "Other": 14.04
+}
+
 
 # Generate visitors
 visitor_ids = []
@@ -98,9 +116,11 @@ def generate_sql():
     sql_statements = []
     
     for keyword in paid_keywords:
-        sql_statements.append(f"INSERT INTO marriott_keyword (traffic_type, keyword) VALUES ('Paid', '{keyword}');")
+        safe_keyword = keyword.replace("'", "''")
+        sql_statements.append(f"INSERT INTO marriott_keyword (traffic_type, keyword) VALUES ('Paid', '{safe_keyword}');")
     for keyword in organic_keywords:
-        sql_statements.append(f"INSERT INTO marriott_keyword (traffic_type, keyword) VALUES ('Organic', '{keyword}');")
+        safe_keyword = keyword.replace("'", "''")
+        sql_statements.append(f"INSERT INTO marriott_keyword (traffic_type, keyword) VALUES ('Organic', '{safe_keyword}');")
     for backlink, source in backlink_pairs:
         sql_statements.append(f"INSERT INTO marriott_backlink (backlink_url, source_url) VALUES ('{backlink}', '{source}');")
     for vid, gender, country, age in visitor_ids:
@@ -111,7 +131,10 @@ def generate_sql():
         session_duration = generate_session_duration()
         device = generate_device()
         backlink_id = random.randint(1, len(backlink_pairs))
-        keyword_id = random.randint(1, len(paid_keywords) + len(organic_keywords))
+        # Use actual unique keyword count to avoid foreign key violations
+        unique_organic_count = len(set(organic_keywords))
+        total_unique_keywords = len(paid_keywords) + unique_organic_count
+        keyword_id = random.randint(1, total_unique_keywords)
         visit_date = generate_random_date()
         sql_statements.append(
             f"INSERT INTO marriott_access (visitor_id, pages_visited, session_duration, device, backlink_id, keyword_id, access_date)"
