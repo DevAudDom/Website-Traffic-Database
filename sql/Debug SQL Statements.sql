@@ -27,7 +27,9 @@
 -- Find serial
 SELECT pg_get_serial_sequence('marriott_backlink', 'backlink_id');
 -- Reset serials 
-	ALTER SEQUENCE fourseasons_backlink_backlink_id_seq RESTART WITH 1;
-	ALTER SEQUENCE fourseasons_keyword_keyword_id_seq RESTART WITH 1;
-	ALTER SEQUENCE marriott_backlink_backlink_id_seq RESTART WITH 1;
-	ALTER SEQUENCE marriott_keyword_keyword_id_seq RESTART WITH 1;
+	ALTER SEQUENCE publicfourseasons_backlink_backlink_id_seq RESTART WITH 1;
+	ALTER SEQUENCE public.fourseasons_keyword_keyword_id_seq RESTART WITH 1;
+	ALTER SEQUENCE public.marriott_backlink_backlink_id_seq RESTART WITH 1;
+	ALTER SEQUENCE public.marriott_keyword_keyword_id_seq RESTART WITH 1;
+	ALTER SEQUENCE public.hilton_backlink_backlink_id_seq RESTART WITH 1;
+	ALTER SEQUENCE public.hilton_keyword_keyword_id_seq RESTART WITH 1;
