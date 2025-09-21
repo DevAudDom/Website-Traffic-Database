@@ -29,8 +29,8 @@ def generate_device():
     return 'Mobile' if random.random() < 0.5638 else 'Desktop'
 
 # Helper function to generate a random visitor ID
-def generate_visitor_id(visitor_ids):
-    return random.choice(visitor_ids)
+def generate_visitor_data(visitor_data):
+    return random.choice(visitor_data)
 
 # Keyword data extracted from Top 5 countries utilizing onlineseranking
 paid_keywords = [
@@ -102,14 +102,14 @@ top_countries = {
 
 
 # Generate visitors
-visitor_ids = []
+visitor_data = []
 for i in range(1000):
     visitor_id = i + 1
     gender = random.choices(list(visitor_distribution.keys()), weights=visitor_distribution.values())[0]
     country = random.choices(list(top_countries.keys()), weights=top_countries.values())[0]
     age_group = random.choices(list(age_distribution.keys()), weights=age_distribution.values())[0]
-    age = random.randint(int(age_group.split('-')[0]), int(age_group.split('-')[-1])) if '-' in age_group else 65
-    visitor_ids.append((visitor_id, gender, country, age))  
+    age = random.randint(int(age_group.split('-')[0]), int(age_group.split('-')[-1])) if '-' in age_group else random.randint(65, 100)
+    visitor_data.append((visitor_id, gender, country, age))
 
 # Generate SQL statements
 def generate_sql():
@@ -123,10 +123,10 @@ def generate_sql():
         sql_statements.append(f"INSERT INTO marriott_keyword (traffic_type, keyword) VALUES ('Organic', '{safe_keyword}');")
     for backlink, source in backlink_pairs:
         sql_statements.append(f"INSERT INTO marriott_backlink (backlink_url, source_url) VALUES ('{backlink}', '{source}');")
-    for vid, gender, country, age in visitor_ids:
+    for vid, gender, country, age in visitor_data:
         sql_statements.append(f"INSERT INTO marriott_visitor (visitor_id, gender, country, age) VALUES ({vid}, '{gender}', '{country}', {age});")
     for _ in range(2000):
-        visitor_id = generate_visitor_id(visitor_ids)[0]
+        visitor_id = generate_visitor_data(visitor_data)[0]
         pages_visited = generate_pages_visited()
         session_duration = generate_session_duration()
         device = generate_device()
