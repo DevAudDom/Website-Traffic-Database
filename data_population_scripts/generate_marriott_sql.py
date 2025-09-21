@@ -28,7 +28,7 @@ def generate_random_date():
 def generate_device():
     return 'Mobile' if random.random() < 0.5638 else 'Desktop'
 
-# Helper function to generate a random visitor ID
+# Helper function to generate random visitor data
 def generate_visitor_data(visitor_data):
     return random.choice(visitor_data)
 
