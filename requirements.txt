@@ -1,17 +1,20 @@
-# Website Traffic Database - Data Generation Scripts
-# This project uses only Python built-in modules for data generation
+# Website Traffic Database - Python Dependencies
+# This project includes both data generation scripts and visualization notebooks
 
-# Core Python modules used:
+# Data Generation Scripts (Python Standard Library Only)
 # - random (for generating random data)
 # - datetime (for date/time operations)
+# No external dependencies required for data generation scripts
 
-# No external dependencies required
-# All scripts use only Python standard library modules
+# Visualization and Database Connection (External Dependencies)
+psycopg2-binary>=2.9.0
+pandas>=1.5.0
+matplotlib>=3.5.0
+seaborn>=0.11.0
+jupyter>=1.0.0
 
-Notes
-SQL folder is good,
-SRC folder only has data population scripts. After running the scripts, the SQL files were manually combined 
-for the insertion sql file.
-Need to understand the dashboard and visualization, need a better understanding of python, 
-and also how we went from web traffic site to completed project. What did we do manually? 
-What motivated those choices?
+# Optional: For enhanced database connectivity
+sqlalchemy>=1.4.0
+
+# Development Dependencies (Optional)
+# ipykernel>=6.0.0  # For Jupyter notebook support
