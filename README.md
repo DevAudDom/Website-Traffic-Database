@@ -2,7 +2,7 @@
 
 ## 📌 Project Overview
 
-This project designs and implements relational databases to analyze and manage website traffic for four hotel websites: **Four Seasons, Hilton, Marriott, and Shangri-La**.
+This project was for our Intro to Data Engineering course in Spring 25'. This solution designs and implements relational databases to analyze and manage website traffic for four hotel websites: **Four Seasons, Hilton, Marriott, and Shangri-La**.
 The goal is to provide international partners with structured data for traffic analysis, enabling insights into visitor demographics, engagement trends, and traffic sources.
 
 ## 🎯 Objectives
@@ -61,13 +61,14 @@ A Python-based dashboard was built using:
 - **Libraries**: Pandas, Matplotlib, Seaborn, Psycopg2
 - **Features**: Hotel selection filter, interactive charts, comprehensive analytics
 - **Insights**: Visitor demographics, device usage, country-wise distribution, keyword traffic, backlink sources, engagement trends
-- **Notebooks**: 
+- **Notebooks**:
   - `notebooks/Visualizations.ipynb` - Main visualization dashboard
   - `Team-3-Project-Files/Team3.ipynb` - Alternative implementation
 
 ## 🚀 Installation & Setup
 
 ### Prerequisites
+
 - Python 3.7+
 - PostgreSQL database
 - Jupyter Notebook (optional, for running visualization notebooks)
@@ -75,23 +76,25 @@ A Python-based dashboard was built using:
 ### Installation
 
 1. **Clone the repository:**
+
    ```bash
    git clone <repository-url>
    cd Website-Traffic-Database
    ```
-
 2. **Install Python dependencies:**
+
    ```bash
    pip install -r requirements.txt
    ```
-
 3. **Set up PostgreSQL database:**
+
    - Create a database named `class_project`
    - Run the schema from `sql/schema.sql`
    - Populate with data from `sql/data_inserts.sql`
-
 4. **Configure database connection:**
+
    - Update database settings in the Jupyter notebooks:
+
    ```python
    DB_SETTINGS = {
        'dbname': 'class_project',
@@ -105,6 +108,7 @@ A Python-based dashboard was built using:
 ### Running the Project
 
 1. **Generate new data (optional):**
+
    ```bash
    cd data_population_scripts
    python generate_fourseasons_sql.py
@@ -112,8 +116,8 @@ A Python-based dashboard was built using:
    python generate_marriott_sql.py
    python shangri_generate_data.py
    ```
-
 2. **Run visualizations:**
+
    ```bash
    jupyter notebook notebooks/Visualizations.ipynb
    ```
@@ -155,12 +159,14 @@ Website-Traffic-Database/
 ## 📈 Key Features
 
 ### Data Generation Scripts
+
 - **Realistic Distributions**: Based on actual web analytics data
 - **Configurable Parameters**: Session durations, bounce rates, device preferences
 - **SQL Injection Prevention**: Proper string escaping in generated SQL
 - **No External Dependencies**: Uses only Python standard library
 
 ### Visualization Dashboard
+
 - **Multi-Hotel Analysis**: Compare metrics across all four hotels
 - **Comprehensive Metrics**: 13 different analytical views
 - **Interactive Charts**: Bar charts and line plots for trend analysis
@@ -187,15 +193,16 @@ This project strengthened skills in:
 ### Common Issues
 
 1. **Database Connection Errors:**
+
    - Verify PostgreSQL is running
    - Check database credentials in notebook settings
    - Ensure database `class_project` exists
-
 2. **Missing Dependencies:**
+
    - Run `pip install -r requirements.txt`
    - For psycopg2 issues, try `pip install psycopg2-binary`
-
 3. **Jupyter Notebook Issues:**
+
    - Ensure Jupyter is installed: `pip install jupyter`
    - Start notebook server: `jupyter notebook`
 
