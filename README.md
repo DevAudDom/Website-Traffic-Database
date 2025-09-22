@@ -140,10 +140,6 @@ Website-Traffic-Database/
 │   └── Visualizations.ipynb         # Main visualization dashboard
 ├── docs/                            # Project documentation
 │   └── Project Report.pdf           # Detailed project report
-├── Team-3-Project-Files/           # Alternative project files
-│   ├── Team3.ipynb                 # Alternative visualization notebook
-│   ├── Team-3-DDL.sql              # Alternative schema
-│   └── Data Population Scripts/    # Alternative data generation scripts
 ├── requirements.txt                 # Python dependencies
 └── README.md                       # This file
 ```
