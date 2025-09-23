@@ -78,7 +78,7 @@ A Python-based dashboard was built using:
 1. **Clone the repository:**
 
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/DevAudDom/Website-Traffic-Database.git
    cd Website-Traffic-Database
    ```
 2. **Install Python dependencies:**
